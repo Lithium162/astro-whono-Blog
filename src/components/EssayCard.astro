@@ -6,17 +6,16 @@ const {
   title,
   excerpt,
   date,
-  tag
+  tag,
+  badge = '随笔'
 } = Astro.props;
 ---
 
-<article class="list-item">
+<a class="list-item list-item--link" href={href}>
   <div class="list-item__row">
     <div style="display:flex; align-items:center; gap:10px;">
-      <span class="badge">随笔</span>
-      <h3 class="list-item__title" style="margin:0;">
-        <a href={href}>{title}</a>
-      </h3>
+      {badge ? <span class="badge">{badge}</span> : null}
+      <h3 class="list-item__title" style="margin:0;">{title}</h3>
     </div>
   </div>
   {excerpt ? <p class="list-item__excerpt">{excerpt}</p> : null}
@@ -24,4 +23,4 @@ const {
     发布于：{formatISODate(date)}
     {tag ? <> · <span class="tag">#{tag}</span></> : null}
   </div>
-</article>
+</a>

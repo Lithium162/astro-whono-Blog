@@ -8,6 +8,10 @@ draft: false
 
 这篇文章展示了本主题支持的所有 Markdown 排版效果。
 
+第一段……（用于列表预览）
+<!-- more -->
+后续正文……
+
 ## 文本格式
 
 这是一段普通文本。**这是粗体文字**，*这是斜体文字*，***这是粗斜体***。你也可以使用 ~~删除线~~ 来标记废弃内容。
@@ -23,6 +27,19 @@ draft: false
 > 第一段引用内容。
 >
 > 第二段引用内容，展示多段落效果。
+
+来源标注（`<cite>` 放在 blockquote 内最后一行）：
+
+> 设计的价值不止于建造完成。
+>
+> <cite>— Dieter Rams</cite>
+
+Pullquote（使用 `blockquote.pullquote` 变体）：
+
+<blockquote class="pullquote">
+  你那么憎恨那些人，跟他们斗了那么久，最终却变得和他们一样。人世间没有任何理想值得以这样的沉沦为代价。
+  <cite>— 百年孤独</cite>
+</blockquote>
 
 ## 提示块（Callout）
 
@@ -127,6 +144,8 @@ const hello = 'world';
 
 ## 代码块
 
+以下代码块用于展示工具栏（语言/行数/复制按钮）与行号（默认开启）。
+
 ### JavaScript
 
 ```javascript
@@ -203,25 +222,43 @@ npm run build
 **案例 A：img + figcaption**
 
 <figure class="figure">
-  <img src="/og.svg" alt="默认分享图示例" />
+  <img src="/figure-01.svg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">图注示例：这是图片的说明文字。</figcaption>
 </figure>
 
 **案例 B：无 figcaption（不应留空白）**
 
 <figure class="figure">
-  <img src="/og.svg" alt="无图注示例" />
+  <img src="/gallery-01.svg" alt="无图注示例" />
 </figure>
 
 **案例 C：picture + figcaption（可选）**
 
 <figure class="figure">
   <picture>
-    <source srcset="/og.svg" type="image/svg+xml" />
-    <img src="/og.svg" alt="picture 图像示例" />
+    <source srcset="/figure-02.svg" type="image/svg+xml" />
+    <img src="/figure-02.svg" alt="图注示例图片 2" />
   </picture>
   <figcaption class="figure-caption">图注示例：picture 的说明文字。</figcaption>
 </figure>
+
+### Gallery
+
+**案例：两图排版（含可选 figcaption）**
+
+<ul class="gallery">
+  <li>
+    <figure>
+      <img src="/gallery-01.svg" alt="画廊示例 1" />
+      <figcaption>第一张图注（可选）。</figcaption>
+    </figure>
+  </li>
+  <li>
+    <figure>
+      <img src="/gallery-02.svg" alt="画廊示例 2" />
+    </figure>
+  </li>
+</ul>
 
 ## 分割线
 

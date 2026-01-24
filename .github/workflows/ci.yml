@@ -36,11 +36,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
-
-      - name: Check callout
-        run: npm run check:callout
-
-      - name: Check figure (if present)
-        run: npm run check:figure --if-present
+      - name: Run CI
+        run: npm run ci

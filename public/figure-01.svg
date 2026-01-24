@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffefc"/>
+      <stop offset="100%" stop-color="#f2f1ec"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf9f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#bg)"/>
+  <rect x="80" y="70" width="1040" height="500" rx="20" fill="url(#card)" stroke="#e7e5e4"/>
+  <circle cx="240" cy="240" r="90" fill="#e7e5e4"/>
+  <text x="380" y="190" font-family="Georgia, serif" font-size="36" fill="#111111">Whono</text>
+  <text x="380" y="220" font-family="Georgia, serif" font-size="16" fill="#666666">Astro Open Theme</text>
+  <rect x="380" y="260" width="520" height="24" rx="6" fill="#d6d3d1"/>
+  <rect x="380" y="300" width="420" height="18" rx="6" fill="#e7e5e4"/>
+  <rect x="380" y="334" width="460" height="18" rx="6" fill="#eceae4"/>
+  <rect x="380" y="368" width="300" height="18" rx="6" fill="#f0efe9"/>
+  <rect x="140" y="430" width="920" height="2" fill="#e7e5e4"/>
+  <rect x="140" y="470" width="260" height="18" rx="6" fill="#e5e2dc"/>
+  <rect x="420" y="470" width="260" height="18" rx="6" fill="#e5e2dc"/>
+  <rect x="700" y="470" width="260" height="18" rx="6" fill="#e5e2dc"/>
+</svg>

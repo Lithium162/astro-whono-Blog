@@ -1,6 +1,7 @@
 ---
 import Sidebar from '../components/Sidebar.astro';
 import '../styles/global.css';
+import { site } from '../../site.config.mjs';
 
 const {
   title,
@@ -10,7 +11,9 @@ const {
   bodyClass,
 } = Astro.props;
 
-const siteTitle = 'Whono';
+const siteTitle = site.title;
+const brandTitle = site.brandTitle ?? siteTitle;
+const metaDescription = description ?? site.description;
 const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.href;
 const ogImage = image
@@ -38,30 +41,75 @@ const ogImage = image
     <link rel="preload" href="/fonts/LXGWWenKaiLite-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
     <title>{fullTitle}</title>
-    {description && <meta name="description" content={description} />}
+    {metaDescription && <meta name="description" content={metaDescription} />}
     <link rel="canonical" href={canonical} />
     <meta property="og:site_name" content={siteTitle} />
     <meta property="og:title" content={fullTitle} />
-    {description && <meta property="og:description" content={description} />}
+    {metaDescription && <meta property="og:description" content={metaDescription} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={fullTitle} />
-    {description && <meta name="twitter:description" content={description} />}
+    {metaDescription && <meta name="twitter:description" content={metaDescription} />}
     {ogImage && <meta name="twitter:image" content={ogImage} />}
     <slot name="head" />
   </head>
   <body class={bodyClass}>
     <div class="shell">
-      <Sidebar siteTitle={siteTitle} />
+      <Sidebar siteTitle={brandTitle} />
       <div class="divider" aria-hidden="true"></div>
       <main class="content">
         <div class="content__inner">
           <slot />
-          <footer class="site-footer">© {siteTitle} | since 2023</footer>
+          <footer class="site-footer">© {brandTitle} | since 2023</footer>
         </div>
       </main>
     </div>
+    <script is:inline>
+      (() => {
+        const buttons = document.querySelectorAll('.code-copy');
+        if (!buttons.length) return;
+
+        buttons.forEach((button) => {
+          button.disabled = false;
+        });
+
+        document.addEventListener('click', async (event) => {
+          const button = event.target.closest('.code-copy');
+          if (!button) return;
+
+          const code = button.closest('.code-block')?.querySelector('pre code');
+          const text = code?.textContent ?? '';
+          if (!text) return;
+
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch (_) {
+            const helper = document.createElement('textarea');
+            helper.value = text;
+            helper.setAttribute('readonly', '');
+            helper.style.position = 'fixed';
+            helper.style.opacity = '0';
+            document.body.appendChild(helper);
+            helper.select();
+            document.execCommand('copy');
+            helper.remove();
+          }
+
+          button.dataset.state = 'copied';
+          button.setAttribute('aria-label', '已复制');
+          button.setAttribute('title', '已复制');
+          window.setTimeout(() => {
+            button.dataset.state = 'idle';
+            button.setAttribute('aria-label', '复制代码');
+            button.setAttribute('title', '复制代码');
+          }, 1200);
+        });
+      })();
+    </script>
+    <script>
+      import '../scripts/sidebar-theme.ts';
+    </script>
   </body>
 </html>

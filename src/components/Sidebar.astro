@@ -44,9 +44,9 @@ const quote = 'There is only one thing in\nthe world worse than being\ntalked ab
       id="reader-toggle"
       class="icon-button reader-toggle"
       type="button"
-      aria-label="进入阅读模式"
+      aria-label="阅读模式"
       aria-pressed="false"
-      title="进入阅读模式"
+      title="阅读模式"
     >
       <svg class="icon icon-book-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path
@@ -65,6 +65,14 @@ const quote = 'There is only one thing in\nthe world worse than being\ntalked ab
           stroke-linecap="round"
           stroke-linejoin="round"
         />
+        <path
+          d="M12 6.5V17.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
       <svg class="icon icon-book-closed" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path
@@ -80,6 +88,14 @@ const quote = 'There is only one thing in\nthe world worse than being\ntalked ab
           fill="none"
           stroke="currentColor"
           stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 6.5V17.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
@@ -110,9 +126,9 @@ const quote = 'There is only one thing in\nthe world worse than being\ntalked ab
       id="theme-toggle"
       class="icon-button theme-toggle"
       type="button"
-      aria-label="切换到深色模式"
+      aria-label="夜间模式"
       aria-pressed="false"
-      title="切换到深色模式"
+      title="夜间模式"
     >
       <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path
@@ -145,66 +161,3 @@ const quote = 'There is only one thing in\nthe world worse than being\ntalked ab
   </div>
 </aside>
 
-<script>
-  const KEY = 'theme';
-  const btn = document.getElementById('theme-toggle');
-  const readerBtn = document.getElementById('reader-toggle');
-  const readerExit = document.getElementById('reader-exit');
-  const root = document.documentElement;
-  const body = document.body;
-
-  function isDark() {
-    return root.dataset.theme === 'dark';
-  }
-
-  function apply(theme: string) {
-    root.dataset.theme = theme;
-    const dark = theme === 'dark';
-    if (btn) {
-      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-      const label = dark ? '切换到浅色模式' : '切换到深色模式';
-      btn.setAttribute('aria-label', label);
-      btn.setAttribute('title', label);
-    }
-  }
-
-  btn?.addEventListener('click', () => {
-    const next = isDark() ? 'light' : 'dark';
-    apply(next);
-    try { localStorage.setItem(KEY, next); } catch (_) {}
-  });
-
-  function isReaderOn() {
-    return body?.dataset.reading === 'immersive';
-  }
-
-  function applyReader(on: boolean) {
-    if (!body) return;
-    if (on) {
-      body.dataset.reading = 'immersive';
-    } else {
-      delete body.dataset.reading;
-    }
-    if (readerBtn) {
-      const label = on ? '退出阅读模式' : '进入阅读模式';
-      readerBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      readerBtn.setAttribute('aria-label', label);
-      readerBtn.setAttribute('title', label);
-    }
-    if (readerExit) {
-      readerExit.setAttribute('aria-label', '退出阅读模式');
-    }
-  }
-
-  readerBtn?.addEventListener('click', () => {
-    applyReader(!isReaderOn());
-  });
-
-  readerExit?.addEventListener('click', () => {
-    applyReader(false);
-  });
-
-  // 初始化按钮状态
-  apply(isDark() ? 'dark' : 'light');
-  applyReader(false);
-</script>

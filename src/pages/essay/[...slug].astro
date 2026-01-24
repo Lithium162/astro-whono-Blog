@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getPublished } from '../../lib/content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export async function getStaticPaths() {
-  const prod = import.meta.env.PROD;
-  const essays = await getCollection('essay', ({ data }) => (prod ? data.draft !== true : true));
+  const essays = await getPublished('essay');
   return essays.map((essay) => ({
     params: { slug: essay.data.slug ?? essay.id },
     props: { essay }

@@ -1,12 +1,15 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getPublished } from '../../lib/content';
+import { site } from '../../../site.config.mjs';
 
 export async function GET(context) {
-  const essays = (await getCollection('essay', ({ data }) => data.draft !== true))
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const essays = await getPublished('essay', {
+    includeDraft: false,
+    orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  });
 
   return rss({
-    title: 'Whono · 随笔',
+    title: `${site.title} · 随笔`,
     description: '随笔与杂记更新',
     site: context.site,
     items: essays.map((e) => ({

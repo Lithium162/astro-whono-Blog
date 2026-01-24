@@ -1,8 +1,9 @@
 ---
 title: 深夜的咖啡馆
 description: ""
+badge: 夜话
 date: 2026-01-02
-tags: ["随想"]
+tags: ["日常"]
 draft: false
 ---
 

@@ -8,17 +8,9 @@ const {
 } = Astro.props;
 
 const tagsText = (bit.data.tags ?? []).map((t: string) => `#${t}`).join(' ');
-
-// Used by the client-side search in /bits/
-const searchable = [
-  bit.data.title ?? '',
-  bit.data.description ?? '',
-  bit.body ?? '',
-  tagsText,
-].join(' ').toLowerCase();
 ---
 
-<article class="bit-card" data-bit data-search={searchable}>
+<article class="bit-card" data-bit data-slug={bit.data.slug ?? bit.id}>
   <div class="bit-author">
     <div class="avatar" aria-hidden="true">{author[0] ?? 'W'}</div>
     <div class="name">{author}</div>

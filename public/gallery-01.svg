@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f6f2"/>
+      <stop offset="100%" stop-color="#efece6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <path d="M0 440 C220 380 380 400 520 440 C640 470 780 510 1200 480 L1200 640 L0 640 Z" fill="#e7e5e4"/>
+  <path d="M0 500 C260 460 520 530 760 490 C930 460 1040 440 1200 460 L1200 640 L0 640 Z" fill="#d6d3d1"/>
+  <circle cx="210" cy="200" r="60" fill="#e0ddd7"/>
+  <text x="320" y="190" font-family="Georgia, serif" font-size="28" fill="#111111">Whono</text>
+  <text x="320" y="215" font-family="Georgia, serif" font-size="14" fill="#666666">Astro Gallery</text>
+  <rect x="320" y="235" width="420" height="16" rx="8" fill="#d6d3d1"/>
+  <rect x="320" y="258" width="300" height="12" rx="8" fill="#e5e2dc"/>
+</svg>

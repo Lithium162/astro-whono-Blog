@@ -1,16 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EssayCard from '../../components/EssayCard.astro';
-import { getCollection } from 'astro:content';
+import { getPublished } from '../../lib/content';
+import { getListExcerpt } from '../../utils/excerpt';
 
-const prod = import.meta.env.PROD;
-
-const essays = (await getCollection('essay', ({ data }) => (prod ? data.draft !== true : true)))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const essays = await getPublished('essay', {
+  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+});
 ---
 
 <BaseLayout title="随笔">
-  <div class="page-header">
+  <div class="page-header page-header--essay">
     <h1 class="page-title">随笔</h1>
     <span class="page-subtitle">随笔与杂记，共 {essays.length} 篇 · <a href="/essay/rss.xml">RSS</a></span>
   </div>
@@ -20,9 +20,10 @@ const essays = (await getCollection('essay', ({ data }) => (prod ? data.draft !=
       <EssayCard
         href={`/essay/${e.data.slug ?? e.id}/`}
         title={e.data.title}
-        excerpt={e.data.description}
+        excerpt={getListExcerpt(e)}
         date={e.data.date}
         tag={e.data.tags?.[0]}
+        badge={e.data.badge}
       />
     ))}
   </div>

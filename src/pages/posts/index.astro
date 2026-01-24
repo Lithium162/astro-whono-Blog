@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getPublished } from '../../lib/content';
 import { groupByYear, formatMonthDay } from '../../utils/format';
 
-const prod = import.meta.env.PROD;
-
-const posts = (await getCollection('posts', ({ data }) => (prod ? data.draft !== true : true)))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = await getPublished('posts', {
+  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+});
 
 const groups = groupByYear(posts, (p) => p.data.date);
 ---

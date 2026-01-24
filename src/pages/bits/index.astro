@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BitCard from '../../components/BitCard.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getPublished } from '../../lib/content';
 
-const prod = import.meta.env.PROD;
-
-const bits = (await getCollection('bits', ({ data }) => (prod ? data.draft !== true : true)))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const bits = await getPublished('bits', {
+  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+});
 
 const rendered = await Promise.all(
   bits.map(async (bit) => {
@@ -28,6 +28,7 @@ const rendered = await Promise.all(
       <button id="bits-search-btn" type="button">搜索</button>
       <button class="new" id="bits-new-btn" type="button" data-new-bit>✍ 写小记</button>
     </div>
+    <div class="bits-status" id="bits-search-status" role="status" aria-live="polite"></div>
   </div>
 
   <div id="bits-list">
@@ -37,32 +38,6 @@ const rendered = await Promise.all(
   </div>
 
   <script>
-    const input = document.getElementById('bits-search') as HTMLInputElement | null;
-    const btn = document.getElementById('bits-search-btn') as HTMLButtonElement | null;
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-bit]'));
-
-    function applyFilter() {
-      if (!input) return;
-      const q = (input.value || '').trim().toLowerCase();
-      for (const el of cards) {
-        const hay = (el.getAttribute('data-search') || '').toLowerCase();
-        el.style.display = q === '' || hay.includes(q) ? '' : 'none';
-      }
-    }
-
-    input?.addEventListener('input', applyFilter);
-    btn?.addEventListener('click', applyFilter);
-
-    const newBtn = document.querySelector<HTMLButtonElement>('[data-new-bit]');
-    newBtn?.addEventListener('click', async () => {
-      const cmd = 'npm run new:bit';
-      try {
-        await navigator.clipboard.writeText(cmd);
-        newBtn.textContent = '已复制命令';
-        setTimeout(() => (newBtn.textContent = '✍ 写小记'), 1200);
-      } catch {
-        alert(`在项目根目录运行：\n\n${cmd}`);
-      }
-    });
+    import '../../scripts/bits-search.ts';
   </script>
 </BaseLayout>

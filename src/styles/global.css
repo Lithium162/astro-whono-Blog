@@ -1,5 +1,7 @@
 @import "./components/callout.css";
 @import "./components/figure.css";
+@import "./components/code-block.css";
+@import "./components/prose.css";
 
 @font-face {
   font-family: "LXGW WenKai";
@@ -20,8 +22,14 @@
   --faint: #a8a29e;
   --border: #e7e5e4;
   --accent: #b91c1c;
-  --code-bg: #f5f5f4;
-  --font-mono: "Sarasa Mono SC","Noto Sans Mono CJK SC",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --code-header-bg: #f2f2f0;
+  --code-content-bg: #fcfcfb;
+  --code-border: #e6e6e4;
+  --code-text: #333333;
+  --code-bg: var(--code-content-bg);
+  --code-action-hover-bg: #e8e8e6;
+  --panel: var(--code-header-bg);
+  --font-mono: "Sarasa Mono SC", "Noto Sans Mono CJK SC", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --max: 900px;
   --sidebar: 320px;
 }
@@ -34,38 +42,12 @@
   --faint: #737373;
   --border: #333333;
   --accent: #f87171;
-  --code-bg: #2d2d2d;
-}
-
-/* ------------------------------
-   代码块（Astro/Shiki）
-   - Astro 常输出 <pre class="astro-code">（带行内背景/颜色）
-   - 部分环境会输出 <pre class="shiki">
-   - 覆盖背景，并在深色模式下映射 token 颜色
--------------------------------- */
-
-/* 覆盖行内背景 */
-pre:is(.astro-code, .shiki) {
-  background-color: var(--code-bg) !important;
-}
-
-/* 可选：移除 token 背景，避免条纹感 */
-pre:is(.astro-code, .shiki) span {
-  background-color: transparent !important;
-}
-
-/* token 颜色映射（仅在存在 Shiki 变量时启用） */
-pre:is(.astro-code, .shiki) span[style*="--shiki-light"] {
-  color: var(--shiki-light) !important;
-}
-
-:root[data-theme="dark"] pre:is(.astro-code, .shiki) span[style*="--shiki-dark"] {
-  color: var(--shiki-dark) !important;
-}
-
-/* 暗色模式兜底：纯文本代码块可能无 token span，需强制基础文字色 */
-:root[data-theme="dark"] pre:is(.astro-code, .shiki) {
-  color: var(--shiki-dark, var(--text)) !important;
+  --code-header-bg: #2a2a2a;
+  --code-content-bg: #222222;
+  --code-border: #333333;
+  --code-text: #e1e1e1;
+  --code-bg: var(--code-content-bg);
+  --code-action-hover-bg: #3a3a3a;
 }
 
 /* ===============================
@@ -92,7 +74,7 @@ time,
 .archive-date,
 .bit-meta,
 .meta-line {
-  font-family: "LXGW WenKai","Kaiti SC","STKaiti",serif;
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", serif;
 }
 
 .page-subtitle,
@@ -104,7 +86,7 @@ time,
 .prose blockquote p,
 cite,
 q {
-  font-family: "LXGW WenKai","Kaiti SC","STKaiti",serif;
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", serif;
 }
 
 pre,
@@ -203,11 +185,12 @@ hr {
   gap: 10px;
   padding: 2px 0;
   font-size: 16px;
+  transform-origin: right center;
   transition: transform 0.2s ease;
 }
 
 .nav a:hover {
-  transform: translateX(-5px);
+  transform: scale(1.05);
   border-bottom-color: transparent;
 }
 
@@ -229,10 +212,16 @@ hr {
 ================================ */
 .content {
   padding: 56px 48px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
 }
 
 .content__inner {
   max-width: var(--max);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .site-footer {
@@ -241,6 +230,7 @@ hr {
   text-align: center;
   font-size: 12px;
   color: var(--faint);
+  margin-top: auto;
 }
 
 /* ===============================
@@ -260,6 +250,62 @@ hr {
 
 .page-header .page-title {
   margin: 0;
+}
+
+.page-header .page-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: baseline;
+}
+
+.page-header .icon-link {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  border-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.page-header .icon-link:hover {
+  color: var(--text);
+  background: var(--panel);
+  border-bottom: 0;
+}
+
+.page-header .icon-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.page-header .icon-link .icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.page-header.page-header--about {
+  align-items: flex-end;
+}
+
+.page-header.page-header--about .page-actions {
+  align-self: flex-end;
+  margin-right: 18px;
+}
+
+.page-header.page-header--about .icon-link .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.page-header.page-header--essay {
+  padding-left: 14px;
 }
 
 .page-header .page-subtitle {
@@ -309,14 +355,48 @@ hr {
 }
 
 .intro {
-  margin: 28px 0 38px;
+  margin: 28px 0 32px;
   color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.intro__lead {
+  display: block;
   font-size: 15px;
 }
 
+.intro__more {
+  display: block;
+  margin-top: 10px;
+}
+
+.intro--serif {
+  font-family: "Noto Serif SC", ui-serif, Georgia, "Times New Roman", "Songti SC", serif;
+}
+
+.intro--serif a {
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", serif;
+}
+
 .section-title {
-  font-size: 22px;
-  margin: 52px 0 16px;
+  font-size: 20px;
+  margin: 52px 0 2px;
+  position: relative;
+}
+
+.section-title--index {
+  margin-left: 14px;
+  margin-top: 4px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  margin-top: 6px;
 }
 
 .list {
@@ -328,12 +408,28 @@ hr {
 
 .list-item {
   padding: 18px 0;
-  border-bottom: 1px solid var(--border);
 }
 
-.list-item:last-child {
-  border-bottom: none;
+.list-item--link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 12px 14px;
 }
+
+.list-item--link:hover,
+.list-item--link:focus-visible {
+  background: var(--code-header-bg);
+  border-bottom-color: transparent;
+  outline: 2px solid transparent;
+}
+
+.list-item--link:focus-visible {
+  outline-color: var(--accent);
+  outline-offset: 2px;
+}
+
 
 .list-item__row {
   display: flex;
@@ -362,19 +458,29 @@ hr {
 .list-item__excerpt {
   margin: 10px 0 0;
   color: #666;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", serif;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 1px 8px;
+  padding: 0 7px;
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
   color: var(--muted);
   background: #fafafa;
+  position: relative;
+  top: 1px;
 }
 
 :root[data-theme="dark"] .badge {
@@ -400,7 +506,7 @@ hr {
   grid-template-columns: 56px 1fr auto;
   gap: 14px;
   align-items: baseline;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .archive-date {
@@ -410,16 +516,132 @@ hr {
 
 .archive-tag {
   color: var(--faint);
+  font-size: 13px;
+}
+
+/* About: focus */
+.focus-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 30px;
+  display: grid;
+  gap: 8px;
+}
+
+.focus-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.focus-list li::before {
+  content: "•";
+  color: var(--faint);
+}
+
+/* 技术栈 */
+.tech-stack {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+}
+
+.tech-group-title {
   font-size: 12px;
+  color: var(--faint);
+  letter-spacing: 0.6px;
+}
+
+.tech-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.tech-item {
+  display: grid;
+  gap: 4px;
+}
+
+.tech-item-head {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.tech-item-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tech-item-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 栏目指引 */
+.site-guide {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 40px;
+}
+
+.site-guide-item {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.site-guide-item:hover {
+  background: #f7f7f5;
+  border-color: #e0dedc;
+}
+
+:root[data-theme="dark"] .site-guide-item:hover {
+  background: #2f2f2f;
+  border-color: #3b3b3b;
+}
+
+.site-guide-head {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.site-guide-link {
+  font-size: 12px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+}
+
+.site-guide-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.site-guide-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 /* Bits（小记） */
 
 .bits-toolbar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 8px;
   /* border removed */
   padding-bottom: 12px;
   margin: 35px 0;
@@ -459,6 +681,12 @@ hr {
   border-color: #111;
   background: #111;
   color: #fff;
+}
+
+.bits-status {
+  min-height: 16px;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .bit-card {
@@ -671,7 +899,7 @@ hr {
     --faint: #737373;
     --border: #333333;
     --accent: #f87171;
-    --code-bg: #2d2d2d;
+    --code-content-bg: #222222;
   }
 
 
@@ -696,94 +924,29 @@ hr {
   .bits-controls input {
     width: 160px;
   }
-}
 
-/* Markdown 排版 */
-.prose {
-  font-size: 15px;
-  color: var(--text);
-}
-
-.prose img {
-  max-width: 75%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.prose h1 {
-  font-size: 26px;
-  margin: 0 0 12px;
-}
-
-.prose h2 {
-  font-size: 18px;
-  margin: 42px 0 12px;
-}
-
-.prose h3 {
-  font-size: 16px;
-  margin: 28px 0 10px;
-}
-
-.prose p {
-  margin: 12px 0;
-}
-
-.prose blockquote {
-  margin: 1.2rem 0;
-  padding: 0.75rem 1rem;
-
-  & p {
-    margin: 0;
+  .site-guide {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  background-color: var(--code-bg);
-  border-left: 3px solid var(--border);
-  color: var(--muted);
-  font-size: 0.95em;
+  .tech-stack {
+    grid-template-columns: 1fr;
+  }
 
-}
-
-
-.prose code {
-  font-size: 0.9em;
-  background: var(--code-bg);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.prose pre {
-  overflow-x: auto;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--code-bg);
-}
-
-.prose pre code {
-  font-size: 0.92em;
-  background: transparent;
-  padding: 0;
-}
-
-.prose ul,
-.prose ol {
-  padding-left: 22px;
-}
-
-.prose li {
-  margin: 6px 0;
-}
-
-.prose a {
-  border-bottom-color: currentColor;
 }
 
 .meta-line {
   margin-top: 10px;
-  font-size: 12px;
+  margin-bottom: 24px;
+  font-size: 13px;
   color: var(--faint);
+}
+
+.list-item .meta-line {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  padding-top: 0;
 }
 
 .meta-line .tag {
@@ -812,11 +975,75 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease, transform 0.25s ease;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.icon-button[aria-disabled="true"],
+.icon-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.icon-button[aria-disabled="true"] .icon,
+.icon-button:disabled .icon {
+  transform: none;
+}
+
+/* 图标悬停提示 */
+.sidebar-actions .icon-button[title] {
+  position: relative;
+}
+
+.sidebar-actions .icon-button[title]::after {
+  content: attr(title);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 4px);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", serif;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 5;
+}
+
+.sidebar-actions .icon-button[title]::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, 2px);
+  border: 6px solid transparent;
+  border-top-color: var(--panel);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 4;
+}
+
+.sidebar-actions .icon-button[title]:hover::after,
+.sidebar-actions .icon-button[title]:focus-visible::after,
+.sidebar-actions .icon-button[title]:hover::before,
+.sidebar-actions .icon-button[title]:focus-visible::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .icon-button:hover {
   color: var(--text);
+}
+
+.icon-button:hover .icon {
+  transform: scale(1.06);
 }
 
 /* 主题切换按钮 */
@@ -824,12 +1051,11 @@ hr {
   align-self: center;
 }
 
-.theme-toggle:hover {
-  color: var(--text);
+.theme-toggle:hover .icon {
   transform: rotate(20deg);
 }
 
-.theme-toggle:active {
+.theme-toggle:active .icon {
   transform: rotate(90deg);
 }
 
@@ -842,6 +1068,7 @@ hr {
   width: 18px;
   height: 18px;
   display: block;
+  transition: transform 0.25s ease;
 }
 
 .theme-toggle .icon-sun {
@@ -874,6 +1101,11 @@ body[data-reading="immersive"] .reader-toggle .icon-book-open {
     color: var(--muted);
     transform: none;
   }
+
+  .sidebar-actions .icon-button[title]::before,
+  .sidebar-actions .icon-button[title]::after {
+    display: none;
+  }
 }
 
 /* 阅读模式退出按钮（正文） */
@@ -888,17 +1120,18 @@ body[data-reading="immersive"] .reader-toggle .icon-book-open {
   top: 2px;
   opacity: 0;
   pointer-events: none;
+  width: 38px;
+  height: 38px;
+}
+
+.reader-exit .icon {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 900px) {
   .reader-exit-anchor {
-    padding-right: 0;
-  }
-
-  .reader-exit {
-    position: static;
-    margin-top: 8px;
-    align-self: flex-end;
+    padding-right: 44px;
   }
 }
 

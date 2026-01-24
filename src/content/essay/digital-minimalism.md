@@ -1,6 +1,7 @@
 ---
 title: On Digital Minimalism
 description: Thoughts on living intentionally in a connected world
+badge: Mindful
 date: 2026-01-08
 tags: ["Life", "Technology"]
 draft: false

@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "check:callout": "node ./scripts/check-callout.mjs",
-    "ci": "npm run build && npm run check:callout && npm run check:figure --if-present",
+    "check:codeblock": "node ./scripts/check-codeblock.mjs",
+    "check:gallery": "node ./scripts/check-gallery.mjs",
+    "ci": "npm run check && npm run build && npm run check:callout && npm run check:codeblock && npm run check:gallery && npm run check:figure --if-present",
     "new:bit": "node ./scripts/new-bit.mjs"
   },
   "dependencies": {
@@ -18,6 +23,8 @@
     "astro": "^5.16.9"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.2.0",
+    "@iconify-json/simple-icons": "^1.2.0",
     "@types/node": "^22.0.0",
     "remark-directive": "^4.0.0",
     "ttf2woff2": "^8.0.0",

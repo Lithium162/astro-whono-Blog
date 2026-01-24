@@ -10,15 +10,13 @@ const {
 } = Astro.props;
 ---
 
-<article class="list-item">
+<a class="list-item list-item--link" href={href}>
   <div class="list-item__row">
-    <h3 class="list-item__title">
-      <a href={href}>{title}</a>
-    </h3>
-    <div class="list-item__meta">
-      {formatISODate(date)}
-      {tag ? <> · #{tag}</> : null}
-    </div>
+    <h3 class="list-item__title">{title}</h3>
   </div>
   {excerpt ? <p class="list-item__excerpt">{excerpt}</p> : null}
-</article>
+  <div class="meta-line">
+    {formatISODate(date)}
+    {tag ? <> · <span class="tag">#{tag}</span></> : null}
+  </div>
+</a>

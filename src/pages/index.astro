@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EntryListItem from '../components/EntryListItem.astro';
-import { getCollection } from 'astro:content';
+import { getPublished } from '../lib/content';
+import { getListExcerpt } from '../utils/excerpt';
 
-const prod = import.meta.env.PROD;
-
-const posts = await getCollection('posts', ({ data }) => (prod ? data.draft !== true : true));
-const essays = await getCollection('essay', ({ data }) => (prod ? data.draft !== true : true));
+const posts = await getPublished('posts', {
+  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+});
+const essays = await getPublished('essay', {
+  orderBy: (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+});
 
 const merged = [
   ...posts.map((entry) => ({ type: 'posts', entry })),
@@ -21,13 +24,12 @@ const latest = merged.slice(0, 12);
     <img src="/hero.svg" alt="" />
   </div>
 
-  <div class="intro">
-    把记录当成一件慢慢做的事。这里收录长文（posts）、随笔（essay）以及碎片化的小记（bits）。
-    <br />
-    更多文章请访问 <a href="/posts/">归档</a> 或 <a href="/essay/">随笔</a>。
+  <div class="intro intro--serif">
+    <span class="intro__lead">这是一个开源的写作主题与样例内容库：随笔/essay、归档/posts、碎片化记录/bits。使用与配置见文档（README / Docs）。</span>
+    <span class="intro__more">更多文章请访问 <a href="/posts/">归档</a> 或 <a href="/essay/">随笔</a>。</span>
   </div>
 
-  <h2 class="section-title">索引</h2>
+  <h2 class="section-title section-title--index">索引</h2>
 
   <div class="list">
     {latest.map(({ type, entry }) => {
@@ -40,7 +42,7 @@ const latest = merged.slice(0, 12);
           title={entry.data.title}
           date={entry.data.date}
           tag={tag}
-          excerpt={entry.data.description}
+          excerpt={getListExcerpt(entry)}
         />
       );
     })}

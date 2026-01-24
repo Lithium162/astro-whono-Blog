@@ -3,24 +3,142 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="关于">
-  <h1 class="page-title">关于</h1>
+  <div class="page-header page-header--about">
+    <h1 class="page-title">关于</h1>
+    <span class="page-subtitle">博客简介页（示例）</span>
+    <div class="page-actions">
+      <a
+        class="icon-link"
+        href="https://github.com/cxro/astro-whono"
+        aria-label="GitHub"
+        title="GitHub"
+      >
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M12 2c-5.5 0-10 4.6-10 10.2 0 4.5 2.9 8.3 6.9 9.7.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.7-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2.1 1-2.8-.1-.3-.4-1.4.1-2.8 0 0 .8-.3 2.9 1.1a9.6 9.6 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.5 1.4.2 2.5.1 2.8.7.7 1 1.7 1 2.8 0 4-2.3 4.7-4.5 5 .4.4.8 1 .8 2.1v3.1c0 .3.2.6.7.5 4-1.4 6.9-5.2 6.9-9.7C22 6.6 17.5 2 12 2z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+      <a
+        class="icon-link"
+        href="https://twitter.com/yourname"
+        aria-label="Twitter"
+        title="Twitter"
+      >
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M4.5 4h4.4l3.4 4.7L16.7 4H20l-5.3 7.4L20.4 20h-4.4l-3.9-5.3L8.3 20H5l5.8-8.1L4.5 4z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+      <a
+        class="icon-link"
+        href="mailto:hello@example.com"
+        aria-label="Email"
+        title="Email"
+      >
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M4 6.5h16a2 2 0 0 1 2 2v8.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2z"
+            fill="currentColor"
+          />
+          <path
+            d="M4.8 8.6 12 13.2l7.2-4.6"
+            fill="none"
+            stroke="var(--panel)"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
   <div class="intro">
-    这里是个人简介页（示例）。你可以把简历式信息、长期目标、联系方式等放在这里。
+    欢迎来到我的博客。这里记录的，多是一些技术探索、生活随想与个人成长中琐碎的片段。
+    <br />于我而言，记录是为了抵抗遗忘，整理思绪。
+    如果你也在这条路上，或许我们会在这悄然相遇。
+    <br />
+    愿我们都能在记录中，更清晰地看见自己。
   </div>
 
-  <h2 class="section-title">技术栈</h2>
-  <ul>
-    <li>Astro / Vite</li>
-    <li>TypeScript</li>
-    <li>Markdown / 内容写作工作流</li>
-    <li>GitHub Actions / 部署</li>
+  <h2 class="section-title">当前关注</h2>
+  <ul class="focus-list">
+    <li>写作与内容结构</li>
+    <li>Astro 主题与排版细节</li>
+    <li>生活记录与长期主义</li>
   </ul>
 
-  <h2 class="section-title">站点说明</h2>
-  <ul>
-    <li>/posts/：长文归档（按年分组）</li>
-    <li>/essay/：随笔与短文</li>
-    <li>/bits/：短动态（含草稿生成器脚本）</li>
-    <li>/kids/：育儿记录（TOC 折叠）</li>
-  </ul>
+  <h2 class="section-title">技术栈</h2>
+  <div class="tech-stack">
+    <section class="tech-group">
+      <div class="tech-group-title">前端框架</div>
+      <ul class="tech-list">
+        <li class="tech-item">
+          <div class="tech-item-head">
+            <span class="tech-item-title">Astro / Vite</span>
+          </div>
+          <div class="tech-item-desc">内容站点与构建</div>
+        </li>
+        <li class="tech-item">
+          <div class="tech-item-head">
+            <span class="tech-item-title">CSS / 排版</span>
+          </div>
+          <div class="tech-item-desc">主题样式与排版细节</div>
+        </li>
+      </ul>
+    </section>
+    <section class="tech-group">
+      <div class="tech-group-title">语言与工具</div>
+      <ul class="tech-list">
+        <li class="tech-item">
+          <div class="tech-item-head">
+            <span class="tech-item-title">TypeScript</span>
+          </div>
+          <div class="tech-item-desc">类型约束与脚本支持</div>
+        </li>
+        <li class="tech-item">
+          <div class="tech-item-head">
+            <span class="tech-item-title">Markdown</span>
+          </div>
+          <div class="tech-item-desc">内容写作与发布流程</div>
+        </li>
+      </ul>
+    </section>
+    
+  </div>
+
+  <h2 class="section-title">栏目指引</h2>
+  <div class="site-guide">
+    <article class="site-guide-item">
+      <div class="site-guide-head">
+        <h3 class="site-guide-title">归档</h3>
+        <span class="site-guide-link">/posts/</span>
+      </div>
+      <p class="site-guide-desc">按年份分组的，长文归档。</p>
+    </article>
+    <article class="site-guide-item">
+      <div class="site-guide-head">
+        <h3 class="site-guide-title">随笔</h3>
+        <span class="site-guide-link">/essay/</span>
+      </div>
+      <p class="site-guide-desc">不成体系的碎片。</p>
+    </article>
+    <article class="site-guide-item">
+      <div class="site-guide-head">
+        <h3 class="site-guide-title">小记</h3>
+        <span class="site-guide-link">/bits/</span>
+      </div>
+      <p class="site-guide-desc">朋友圈式短动态流，含一些自动化生成的草稿。</p>
+    </article>
+    <article class="site-guide-item">
+      <div class="site-guide-head">
+        <h3 class="site-guide-title">孩童</h3>
+        <span class="site-guide-link">/kids/</span>
+      </div>
+      <p class="site-guide-desc">关于孩子成长时光笔记。</p>
+    </article>
+  </div>
 </BaseLayout>
