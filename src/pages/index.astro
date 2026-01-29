@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroImage from '../components/HeroImage.astro';
 import EntryListItem from '../components/EntryListItem.astro';
 import { getPublished } from '../lib/content';
 import { getListExcerpt } from '../utils/excerpt';
@@ -21,7 +22,7 @@ const latest = merged.slice(0, 12);
 
 <BaseLayout bodyClass="home">
   <div class="hero">
-    <img src="https://cdn.whono.me/images/necso18.png" alt="" />
+    <HeroImage isLCP />
   </div>
 
   <div class="intro intro--serif">
