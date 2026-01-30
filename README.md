@@ -53,6 +53,32 @@ npm run build && npm run preview
 
 ---
 
+## 一键部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cxro/astro-whono)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/cxro/astro-whono)
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](#一键部署)
+
+部署参数（手动导入仓库时填写）：
+- Framework preset：Astro（Cloudflare Pages）
+- Build command：`npm run build`
+- Output directory：`dist`
+- Node version：`22`
+- 环境变量（可选）：`SITE_URL=https://<你的域名>`
+- 不设置 `SITE_URL` 也能部署，但 RSS/OG/canonical 可能使用相对链接或占位域名（`example.invalid`）
+
+<details>
+<summary><strong>部署后检查（可选）</strong></summary>
+
+- 首页 / 列表 / 详情页可访问
+- RSS 可访问（`/rss.xml` 及分栏 RSS）
+- 设置 `SITE_URL` 后：canonical / `og:url` 指向你的域名
+- Network 不再请求演示域名资源
+
+</details>
+
+---
+
 ## 项目入口
 
 - 站点配置：`site.config.mjs`
@@ -158,7 +184,7 @@ draft: true
 - `/posts/rss.xml`
 - `/essay/rss.xml`
 
-发布前请将 `site.config.mjs` 的 `url` 设置为真实域名。
+部署时建议设置 `SITE_URL`（影响 RSS/OG/canonical 的绝对链接）。
 
 ---
 
@@ -172,7 +198,7 @@ draft: true
 
 ## 贡献
 
-默认在 `main` 开发，功能改动请走 PR（建议使用 `feature/*` 分支）。
+功能改动请走 PR（建议从 \feature/*` 分支发起）。`
 
 License：MIT
 

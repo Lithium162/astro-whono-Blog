@@ -6,7 +6,7 @@ import shikiToolbar from './src/plugins/shiki-toolbar.mjs';
 import { site } from './site.config.mjs';
 
 export default defineConfig({
-  // Required for RSS generation. Replace with your real domain.
+  // Required for RSS generation. Prefer SITE_URL; fallback keeps build passing.
   site: site.url,
   trailingSlash: 'always',
   vite: {

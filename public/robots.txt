@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-# Sitemap: https://astro.whono.me/sitemap.xml
