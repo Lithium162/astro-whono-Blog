@@ -1,13 +1,15 @@
 # astro-whono
 
-[![CI](https://img.shields.io/github/actions/workflow/status/cxro/astro-whono/ci.yml?branch=main&style=for-the-badge&label=CI&labelColor=2E3440&color=A3BE8C&logo=githubactions&logoColor=ECEFF4)](https://github.com/cxro/astro-whono/actions/workflows/ci.yml?query=branch%3Amain)
-[![Node](https://img.shields.io/github/package-json/node-version/cxro/astro-whono?style=for-the-badge&label=Node&labelColor=2E3440&color=81A1C1&logo=nodedotjs&logoColor=ECEFF4)](https://github.com/cxro/astro-whono#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82)
-[![Astro](https://img.shields.io/github/package-json/dependency-version/cxro/astro-whono/astro?style=for-the-badge&label=Astro&labelColor=2E3440&color=BC52EE&logo=astro&logoColor=ECEFF4)](https://docs.astro.build/)
-[![License](https://img.shields.io/github/license/cxro/astro-whono?style=for-the-badge&label=License&labelColor=2E3440&color=4C566A&logo=opensourceinitiative&logoColor=ECEFF4)](https://github.com/cxro/astro-whono/blob/main/LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/cxro/astro-whono/ci.yml?style=for-the-badge&label=CI&labelColor=2E3440&color=A3BE8C&logo=githubactions&logoColor=ECEFF4)](https://github.com/cxro/astro-whono/actions/workflows/ci.yml)
+
+[![Node](https://img.shields.io/github/package-json/node-version/cxro/astro-whono?branch=main&style=for-the-badge&label=Node&labelColor=2E3440&color=81A1C1&logo=nodedotjs&logoColor=ECEFF4)](https://github.com/cxro/astro-whono#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82)
+
+[![Astro](https://img.shields.io/github/package-json/dependency-version/cxro/astro-whono/astro?branch=main&style=for-the-badge&label=Astro&labelColor=2E3440&color=BC52EE&logo=astro&logoColor=ECEFF4)](https://docs.astro.build/)
+
+[![License](https://img.shields.io/github/license/cxro/astro-whono?style=for-the-badge&label=License&labelColor=2E3440&color=4C566A&logo=opensourceinitiative&logoColor=ECEFF4)](LICENSE)
 
 一个极简双栏的 Astro 主题，用于个人写作与轻量内容发布。
 
----
 
 ## 预览
 
@@ -16,7 +18,6 @@
   <img src="public/preview-dark.png" width="49%" alt="深色预览" />
 </p>
 
----
 
 ## 特性
 
@@ -26,13 +27,11 @@
 - RSS：聚合 + 分栏订阅
 - 浅色 / 深色模式 + 阅读模式
 
----
 
 ## 环境要求
 
 - Node.js 22.12+（建议使用 `.nvmrc`）
 
----
 
 ## 快速开始
 
@@ -51,7 +50,6 @@ npm run build && npm run preview
 - 或改用 Git Bash / WSL
 </details>
 
----
 
 ## 一键部署
 
@@ -66,6 +64,7 @@ npm run build && npm run preview
 - Node version：`22`
 - 环境变量（可选）：`SITE_URL=https://<你的域名>`
 - 不设置 `SITE_URL` 也能部署，但 RSS/OG/canonical 可能使用相对链接或占位域名（`example.invalid`）
+- 生产环境建议配置 `SITE_URL`，用于生成 canonical/og:url（绝对 URL）和 RSS 链接
 
 <details>
 <summary><strong>部署后检查（可选）</strong></summary>
@@ -77,7 +76,6 @@ npm run build && npm run preview
 
 </details>
 
----
 
 ## 项目入口
 
@@ -85,7 +83,6 @@ npm run build && npm run preview
 - 内容集合：`src/content.config.ts`
 - 样式入口：`src/styles/global.css`
 
----
 
 ## 内容与路由
 
@@ -99,7 +96,6 @@ npm run build && npm run preview
 - 列表页：`/posts/`、`/essay/`、`/bits/`、`/kids/`、`/about/`
 - 详情页：posts / essay 使用 `[...slug]`
 
----
 
 ## 核心字段（Frontmatter）
 
@@ -120,7 +116,6 @@ draft: true
 
 `draft: true` 的内容会从列表与 RSS 中过滤。
 
----
 
 ## 摘要与描述（description）
 
@@ -128,7 +123,6 @@ draft: true
 - 可用 `<!-- more -->` 指定摘要截取位置
 - `description` 仅用于 SEO/OG（meta description），不影响列表摘要
 
----
 
 ## 写作约定（内容块）
 
@@ -139,7 +133,6 @@ draft: true
 - Pullquote：`blockquote.pullquote`
 - Code Block：构建时增强工具栏/复制按钮/行号（作者无需额外写法）
 
----
 
 ## 字体与许可
 
@@ -176,7 +169,6 @@ draft: true
 
 字体许可：SIL Open Font License 1.1（见 `public/fonts/OFL-LXGW-WenKai-Lite.txt` 与 `public/fonts/OFL-NotoSerifSC.txt`）。
 
----
 
 ## RSS
 
@@ -186,7 +178,6 @@ draft: true
 
 部署时建议设置 `SITE_URL`（影响 RSS/OG/canonical 的绝对链接）。
 
----
 
 ## 常用命令
 
@@ -194,7 +185,6 @@ draft: true
 - `npm run new:bit`
 - `npm run font:build`
 
----
 
 ## 贡献
 
@@ -202,7 +192,6 @@ draft: true
 
 License：MIT
 
----
 
 ## 致谢
 
