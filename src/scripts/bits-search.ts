@@ -126,7 +126,7 @@ newBtn?.addEventListener('click', async () => {
     await navigator.clipboard.writeText(cmd);
     setNewLabel('已复制命令');
     window.setTimeout(() => {
-      setNewLabel('写小记');
+      setNewLabel('碎碎念');
     }, 1200);
   } catch {
     alert(`在项目根目录运行：\n\n${cmd}`);

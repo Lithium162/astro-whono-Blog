@@ -16,21 +16,21 @@ const rendered = await Promise.all(
 );
 ---
 
-<BaseLayout title="生活小记">
+<BaseLayout title="生活絮语">
   <div class="page-header page-header--bits">
-    <h1 class="page-title">生活小记</h1>
+    <h1 class="page-title">生活絮语</h1>
     <span class="page-subtitle">生活不需要长篇，记得就好。</span>
   </div>
 
   <div class="bits-toolbar">
     <div class="bits-controls">
       <div class="bits-search">
-        <input id="bits-search" type="search" placeholder="搜索小记..." autocomplete="off" />
+        <input id="bits-search" type="search" placeholder="搜索：关键词 / 标签" autocomplete="off" />
         <button class="bits-search-btn" id="bits-search-btn" type="button">搜索</button>
       </div>
-      <button class="new" id="bits-new-btn" type="button" data-new-bit aria-label="写小记">
+      <button class="new" id="bits-new-btn" type="button" data-new-bit aria-label="碎碎念">
         <span class="new-icon" aria-hidden="true">✍</span>
-        <span class="new-label">写小记</span>
+        <span class="new-label">碎碎念</span>
       </button>
     </div>
     <div class="bits-status" id="bits-search-status" role="status" aria-live="polite"></div>

@@ -2,7 +2,7 @@
    只包含 /bits/ 页面相关样式，避免干扰通用列表。
 */
 
-/* Bits（小记） */
+/* Bits（絮语） */
 
 .bits-toolbar {
   display: flex;
