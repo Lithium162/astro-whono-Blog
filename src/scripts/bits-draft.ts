@@ -1,5 +1,7 @@
 const dialog = document.getElementById('bits-draft-dialog') as HTMLDialogElement | null;
 const openBtn = document.querySelector<HTMLButtonElement>('[data-new-bit]');
+const defaultAuthorName = (dialog?.dataset.defaultAuthorName ?? '').trim();
+const defaultAuthorAvatar = (dialog?.dataset.defaultAuthorAvatar ?? '').trim();
 
 const form = dialog?.querySelector<HTMLFormElement>('[data-bits-draft-form]') ?? null;
 const closeBtns = dialog?.querySelectorAll<HTMLElement>('[data-bits-draft-close]') ?? [];
@@ -22,8 +24,15 @@ const linkBtn = toolbar?.querySelector<HTMLButtonElement>('[data-action="link"]'
 const contentEl = dialog?.querySelector<HTMLTextAreaElement>('#bits-draft-content') ?? null;
 const tagsEl = dialog?.querySelector<HTMLInputElement>('#bits-draft-tags') ?? null;
 const placeEl = dialog?.querySelector<HTMLInputElement>('#bits-draft-place') ?? null;
-const authorNameEl = dialog?.querySelector<HTMLInputElement>('#bits-draft-author-name') ?? null;
-const authorAvatarEl = dialog?.querySelector<HTMLInputElement>('#bits-draft-author-avatar') ?? null;
+const authorNameEl = dialog?.querySelector<HTMLInputElement>('[data-author-name]') ?? null;
+const authorAvatarEl = dialog?.querySelector<HTMLInputElement>('[data-author-avatar]') ?? null;
+const identityDetails = dialog?.querySelector<HTMLDetailsElement>('[data-identity-details]') ?? null;
+const identityBar = dialog?.querySelector<HTMLElement>('[data-identity-bar]') ?? null;
+const identityPill = dialog?.querySelector<HTMLButtonElement>('[data-identity-pill]') ?? null;
+const identityNew = dialog?.querySelector<HTMLButtonElement>('[data-identity-new]') ?? null;
+const identityNameEl = dialog?.querySelector<HTMLElement>('[data-identity-name]') ?? null;
+const identityAvatarEl = dialog?.querySelector<HTMLElement>('[data-identity-avatar]') ?? null;
+const authorResetBtn = dialog?.querySelector<HTMLButtonElement>('[data-author-reset]') ?? null;
 const imagesWrap = dialog?.querySelector<HTMLElement>('[data-bits-images]') ?? null;
 const imageAddBtn = dialog?.querySelector<HTMLButtonElement>('[data-bits-image-add]') ?? null;
 const imageTemplate = dialog?.querySelector<HTMLTemplateElement>('[data-bits-image-template]') ?? null;
@@ -308,6 +317,64 @@ const resolveImageUrl = (value: string) => {
   return withBase(trimmed.replace(/^\/+/, ''));
 };
 
+const resolveAuthorAvatarUrl = (value: string) => resolveImageUrl(value);
+
+const setAuthorPlaceholders = () => {
+  if (authorNameEl) {
+    authorNameEl.placeholder = defaultAuthorName ? `默认：${defaultAuthorName}` : '默认：匿名';
+  }
+  if (authorAvatarEl) {
+    authorAvatarEl.placeholder = defaultAuthorAvatar
+      ? `默认：${defaultAuthorAvatar}`
+      : '可填相对路径或绝对 URL（留空用默认头像）';
+  }
+};
+
+const renderIdentityAvatar = (avatarSrc: string, letter: string) => {
+  if (!identityAvatarEl) return;
+  identityAvatarEl.innerHTML = '';
+  if (!avatarSrc) {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    identityAvatarEl.appendChild(span);
+    return;
+  }
+  const img = document.createElement('img');
+  img.src = resolveAuthorAvatarUrl(avatarSrc);
+  img.alt = '';
+  img.decoding = 'async';
+  img.loading = 'lazy';
+  img.addEventListener('error', () => {
+    renderIdentityAvatar('', letter);
+  });
+  identityAvatarEl.appendChild(img);
+};
+
+const updateIdentityPill = () => {
+  const overrideName = normalizeAuthorName(authorNameEl?.value ?? '');
+  const overrideAvatar = normalizeAuthorAvatar(authorAvatarEl?.value ?? '');
+  const nameForPill = overrideName || defaultAuthorName || '匿名';
+  const isDefault = !overrideName && !overrideAvatar;
+  const displayName = isDefault ? `${nameForPill}（当前）` : nameForPill;
+  if (identityNameEl) identityNameEl.textContent = displayName;
+  const avatarForPill = overrideAvatar || defaultAuthorAvatar;
+  const letter = Array.from(nameForPill)[0] ?? '匿';
+  renderIdentityAvatar(avatarForPill, letter);
+};
+
+const updateIdentityToggleState = () => {
+  const isOpen = !!identityDetails?.open;
+  if (identityBar) identityBar.classList.toggle('is-open', isOpen);
+};
+
+const toggleIdentityDetails = () => {
+  if (!identityDetails) return;
+  const nextOpen = !identityDetails.open;
+  identityDetails.open = nextOpen;
+  if (nextOpen) authorNameEl?.focus();
+  updateIdentityToggleState();
+};
+
 const imageRowState = new WeakMap<HTMLElement, { lastValue: string; requestId: number }>();
 const initializedImageRows = new WeakSet<HTMLElement>();
 
@@ -497,12 +564,11 @@ const buildMarkdown = () => {
     tags = tags.filter((tag) => !tag.trim().toLowerCase().startsWith('loc:'));
     tags.unshift(`loc:${placeValue}`);
   }
-  const authorNameDefault = normalizeAuthorName(authorNameEl?.defaultValue ?? '');
-  const authorAvatarDefault = normalizeAuthorAvatar(authorAvatarEl?.defaultValue ?? '');
   const authorNameValue = normalizeAuthorName(authorNameEl?.value ?? '');
   const authorAvatarValue = normalizeAuthorAvatar(authorAvatarEl?.value ?? '');
-  const authorChanged = authorNameValue !== authorNameDefault || authorAvatarValue !== authorAvatarDefault;
-  const shouldWriteAuthor = authorChanged && (authorNameValue || authorAvatarValue);
+  const authorNameOverride = authorNameValue && authorNameValue !== defaultAuthorName ? authorNameValue : '';
+  const authorAvatarOverride = authorAvatarValue && authorAvatarValue !== defaultAuthorAvatar ? authorAvatarValue : '';
+  const shouldWriteAuthor = !!authorNameOverride || !!authorAvatarOverride;
   const lines: string[] = ['---', `date: ${formatDateLocal()}`];
 
   if (tags.length) {
@@ -514,8 +580,8 @@ const buildMarkdown = () => {
 
   if (shouldWriteAuthor) {
     lines.push('author:');
-    if (authorNameValue) lines.push(`  name: ${formatTag(authorNameValue)}`);
-    if (authorAvatarValue) lines.push(`  avatar: ${formatTag(authorAvatarValue)}`);
+    if (authorNameOverride) lines.push(`  name: ${formatTag(authorNameOverride)}`);
+    if (authorAvatarOverride) lines.push(`  avatar: ${formatTag(authorAvatarOverride)}`);
   }
 
   if (draftEl?.checked) {
@@ -543,6 +609,9 @@ const openDialog = () => {
   updateManualLink();
   syncImageRows();
   updateToolbarActive();
+  setAuthorPlaceholders();
+  updateIdentityPill();
+  updateIdentityToggleState();
   dialog.showModal();
   window.setTimeout(() => {
     contentEl?.focus();
@@ -555,6 +624,11 @@ const closeDialog = () => {
   hasGenerated = false;
   lastMarkdown = '';
   updateManualLink();
+  if (authorNameEl) authorNameEl.value = '';
+  if (authorAvatarEl) authorAvatarEl.value = '';
+  if (identityDetails) identityDetails.open = false;
+  updateIdentityPill();
+  updateIdentityToggleState();
   dialog.close();
 };
 
@@ -584,6 +658,28 @@ if (openBtn && dialog) {
 initImageRows();
 imageAddBtn?.addEventListener('click', () => {
   addImageRow();
+});
+
+identityPill?.addEventListener('click', () => {
+  toggleIdentityDetails();
+});
+
+identityNew?.addEventListener('click', () => {
+  toggleIdentityDetails();
+});
+
+authorNameEl?.addEventListener('input', () => {
+  updateIdentityPill();
+});
+
+authorAvatarEl?.addEventListener('input', () => {
+  updateIdentityPill();
+});
+
+authorResetBtn?.addEventListener('click', () => {
+  if (authorNameEl) authorNameEl.value = '';
+  if (authorAvatarEl) authorAvatarEl.value = '';
+  updateIdentityPill();
 });
 
 form?.addEventListener('input', () => {

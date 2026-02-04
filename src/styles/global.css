@@ -101,6 +101,15 @@
   --faint: #a8a29e;
   --border: #e7e5e4;
   --accent: #b91c1c;
+  --overlay-20: rgba(0, 0, 0, 0.2);
+  --overlay-35: rgba(0, 0, 0, 0.35);
+  --overlay-45: rgba(0, 0, 0, 0.45);
+  --overlay-60: rgba(0, 0, 0, 0.6);
+  --overlay-70: rgba(0, 0, 0, 0.7);
+  --overlay-85: rgba(0, 0, 0, 0.85);
+  --overlay-90: rgba(0, 0, 0, 0.9);
+  --blur-md: 8px;
+  --blur-lg: 12px;
   --code-header-bg: #f2f2f0;
   --code-content-bg: #fcfcfb;
   --code-border: #e6e6e4;

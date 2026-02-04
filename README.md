@@ -23,12 +23,14 @@
 - 浅色 / 深色模式 + 阅读模式
 
 
-## 环境要求
+## 开始使用
+
+### 环境要求
 
 - Node.js 22.12+（建议使用 `.nvmrc`）
 
 
-## 快速开始
+### 快速开始
 
 ```bash
 npm i
@@ -46,7 +48,16 @@ npm run build && npm run preview
 </details>
 
 
-## 一键部署
+### 常用命令
+
+- `npm run check`
+- `npm run new:bit`
+- `npm run font:build`
+
+
+## 部署
+
+### 一键部署
 
 [![Deploy to Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https://github.com/cxro/astro-whono)&nbsp;&nbsp;[![Deploy to Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)](https://app.netlify.com/start/deploy?repository=https://github.com/cxro/astro-whono)&nbsp;&nbsp;[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-F38020?style=flat&logo=cloudflare&logoColor=white)](https://dash.cloudflare.com/?to=/:account/workers-and-pages)
 
@@ -84,28 +95,18 @@ npm run build && npm run preview
 </details>
 
 
-## 项目入口
+## 配置与入口
+
+### 项目入口
 
 - 站点配置：`site.config.mjs`
 - 内容集合：`src/content.config.ts`
 - 样式入口：`src/styles/global.css`
 
-## 作者信息（头像/用户名，仅用于 /bits/ 页面）
 
-- 默认作者与头像配置在 `site.config.mjs`：`site.author` / `site.authorAvatar`
-- `authorAvatar` 仅写相对路径（不带 `public/`、不带前导 `/`），例如：`author/avatar.webp`
-- 单条 bits 可在 frontmatter 用 `author` 覆盖：
+## 内容与写作
 
-```yaml
-author:
-  name: Alice
-  avatar: author/alice.webp
-```
-
-- 头像图片缺失或加载失败时，会自动回退到首字母头像
-
-
-## 内容与路由
+### 内容与路由
 
 内容集合（Content Collections）：
 - 随笔：位于 `src/content/essay` 目录
@@ -118,7 +119,7 @@ author:
 - 详情页：`/archive/[...slug]`（唯一入口）
 
 
-## 核心字段（Frontmatter）
+### 核心字段（Frontmatter）
 
 随笔：
 ```yaml
@@ -143,17 +144,29 @@ images:                         # 可选：多图（自动读取图片尺寸，�
 # draft: true   # 可选：草稿；线上/预览默认不显示
 ```
 
-作者信息默认来自 `site.config.mjs`，可在单条 bits 中用 `author` 覆盖。
+作者信息（仅 /bits/ 页面）：
+
+- 默认作者与头像配置在 `site.config.mjs`：`site.author` / `site.authorAvatar`
+- `authorAvatar` 仅写相对路径（不带 `public/`、不带前导 `/`），例如：`author/avatar.webp`
+- 单条 bits 可在 frontmatter 用 `author` 覆盖：
+
+```yaml
+author:
+  name: Alice
+  avatar: author/alice.webp
+```
+
+- 头像图片缺失或加载失败时，会自动回退到首字母头像
 
 
-## 摘要与描述（description）
+### 摘要与描述（description）
 
 - 列表摘要默认从正文生成（清洗后截断）
 - 可用 `<!-- more -->` 指定摘要截取位置
 - `description` 仅用于 SEO/OG（meta description），不影响列表摘要
 
 
-## 写作约定（内容块）
+### 写作约定（内容块）
 
 - Callout：`:::note[title] ... :::`（note / tip / info / warning）
 - Figure：`figure > (img|picture) + figcaption?`
@@ -207,13 +220,6 @@ images:                         # 可选：多图（自动读取图片尺寸，�
 - `/essay/rss.xml`
 
 部署时建议设置 `SITE_URL`（影响 RSS/OG/canonical 的绝对链接）。
-
-
-## 常用命令
-
-- `npm run check`
-- `npm run new:bit`
-- `npm run font:build`
 
 
 ## 贡献

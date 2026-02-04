@@ -35,6 +35,7 @@ const maxVisible = 4;
 const firstImage = imageItems.length === 1 ? imageItems[0] : null;
 const totalImages = imageItems.length;
 const wideIndex = totalImages > 1 && totalImages <= maxVisible && totalImages % 2 === 1 ? 0 : -1;
+const hasTags = Boolean(placeText || normalTagItems.length);
 ---
 
 <article class="bit-card" data-bit data-slug={bit.data.slug ?? bit.id}>
@@ -112,24 +113,26 @@ const wideIndex = totalImages > 1 && totalImages <= maxVisible && totalImages % 
   ) : null}
 
   <div class="bit-meta">
-    <div class="bit-tags">
-      {placeText ? (
-        <span class="bit-tag bit-tag--place">
-          <span class="bit-tag-icon" aria-hidden="true">📍</span>
-          <span class="bit-tag-text">{placeText}</span>
-        </span>
-      ) : null}
-      {normalTagItems.length ? (
-        <span class="bit-tag bit-tag--normal">
-          <span class="bit-tag-icon" aria-hidden="true">❤</span>
-          <span class="bit-tag-list">
-            {normalTagItems.map((tag) => (
-              <span class="bit-tag-token">{tag}</span>
-            ))}
+    {hasTags ? (
+      <div class="bit-tags">
+        {placeText ? (
+          <span class="bit-tag bit-tag--place">
+            <span class="bit-tag-icon" aria-hidden="true">📍</span>
+            <span class="bit-tag-text">{placeText}</span>
           </span>
-        </span>
-      ) : null}
-    </div>
+        ) : null}
+        {normalTagItems.length ? (
+          <span class="bit-tag bit-tag--normal">
+            <span class="bit-tag-icon" aria-hidden="true">❤</span>
+            <span class="bit-tag-list">
+              {normalTagItems.map((tag) => (
+                <span class="bit-tag-token">{tag}</span>
+              ))}
+            </span>
+          </span>
+        ) : null}
+      </div>
+    ) : null}
     <div>{formatDateTime(bit.data.date)}</div>
   </div>
 </article>
