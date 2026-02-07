@@ -3,6 +3,7 @@ import {
   type CollectionEntry,
   type CollectionKey
 } from 'astro:content';
+export { createWithBase } from '../utils/format';
 
 type OrderBy<K extends CollectionKey> = (a: CollectionEntry<K>, b: CollectionEntry<K>) => number;
 
@@ -12,15 +13,6 @@ export type GetPublishedOptions<K extends CollectionKey> = {
 };
 
 export const isReservedSlug = (slug: string) => slug.startsWith('page/');
-
-export const createWithBase = (base: string) => {
-  const baseNormalized = base.endsWith('/') ? base : `${base}/`;
-  return (path: string) => {
-    if (!path || path === '/') return baseNormalized;
-    const clean = path.startsWith('/') ? path.slice(1) : path;
-    return `${baseNormalized}${clean}`;
-  };
-};
 
 export const getTotalPages = (itemCount: number, pageSize: number) =>
   Math.ceil(itemCount / pageSize);

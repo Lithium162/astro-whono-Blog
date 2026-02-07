@@ -12,6 +12,16 @@ export function formatMonthDay(d: Date): string {
   return `${mm}/${dd}`;
 }
 
+export function createWithBase(base: string) {
+  const baseNormalized = base.endsWith('/') ? base : `${base}/`;
+  return (path: string) => {
+    if (!path || path === '/') return baseNormalized;
+    if (/^(?:[a-z]+:)?\/\//i.test(path) || path.startsWith('data:')) return path;
+    const clean = path.startsWith('/') ? path.slice(1) : path;
+    return `${baseNormalized}${clean}`;
+  };
+}
+
 export function groupByYear<T>(items: T[], getDate: (item: T) => Date) {
   const map = new Map<number, T[]>();
   for (const it of items) {

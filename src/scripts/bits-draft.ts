@@ -1,3 +1,5 @@
+import { createWithBase } from '../utils/format';
+
 const dialog = document.getElementById('bits-draft-dialog') as HTMLDialogElement | null;
 const openBtn = document.querySelector<HTMLButtonElement>('[data-new-bit]');
 const defaultAuthorName = (dialog?.dataset.defaultAuthorName ?? '').trim();
@@ -40,11 +42,7 @@ const draftEl = dialog?.querySelector<HTMLInputElement>('#bits-draft-draft') ?? 
 
 const pad2 = (value: number) => String(value).padStart(2, '0');
 const base = import.meta.env.BASE_URL ?? '/';
-const withBase = (path: string) => {
-  const baseNormalized = base.endsWith('/') ? base : `${base}/`;
-  const clean = path.startsWith('/') ? path.slice(1) : path;
-  return `${baseNormalized}${clean}`;
-};
+const withBase = createWithBase(base);
 const formatDateLocal = () => {
   const d = new Date();
   const tzMinutes = -d.getTimezoneOffset();

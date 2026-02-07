@@ -1,5 +1,5 @@
 ---
-import { formatDateTime } from '../utils/format';
+import { createWithBase, formatDateTime } from '../utils/format';
 import { site } from '../../site.config.mjs';
 
 const {
@@ -14,13 +14,7 @@ const placeText = placeTag ? placeTag.slice(4).trim() : '';
 const normalTags = tags.filter((t: string) => !t.toLowerCase().startsWith('loc:'));
 const normalTagItems: string[] = normalTags.map((t: string) => `#${t}`);
 const base = import.meta.env.BASE_URL ?? '/';
-const withBase = (path: string) => {
-  if (!path) return path;
-  if (/^(?:[a-z]+:)?\/\//i.test(path) || path.startsWith('data:')) return path;
-  const baseNormalized = base.endsWith('/') ? base : `${base}/`;
-  const clean = path.startsWith('/') ? path.slice(1) : path;
-  return `${baseNormalized}${clean}`;
-};
+const withBase = createWithBase(base);
 const defaultAuthorName = (site.author ?? 'Whono').trim() || 'Whono';
 const authorName = (bit.data.author?.name ?? defaultAuthorName).trim() || defaultAuthorName;
 const authorAvatarRaw = (bit.data.author?.avatar ?? site.authorAvatar ?? '').trim();

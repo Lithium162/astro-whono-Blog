@@ -19,6 +19,7 @@ The format is based on Keep a Changelog, and this project aims to follow Semanti
 - Markdown 渲染链路新增 `rehype-raw` + `rehype-sanitize`（含 allowlist），在保留 callout/gallery/code-block 等结构前提下补齐 XSS 防护
 - /bits 列表渲染改为按正文长度分流：清洗后 `<=180` 字保留原 Markdown 结构渲染，`>180` 字显示摘要文本
 - archive/essay 列表页与分页页复用 `src/lib/content.ts` 公共工具（`createWithBase`、`getPageSlice`、`getTotalPages`、`buildPaginatedPaths` 等）
+- base-aware 路径拼接工具统一为 `src/utils/format.ts` 的 `createWithBase`，清理 BaseLayout/Sidebar/BitCard/RSS/首页/归档详情/bits 脚本中的重复 `withBase` 实现；`src/lib/content.ts` 保留兼容转导出
 - 构建时强制内联样式表（`inlineStylesheets: 'always'`），减少首屏阻塞
 - `SITE_URL` 缺失时不输出 canonical/og:url，并补充生产警告与部署说明
 - bits 灯箱复用通用控制器并统一样式入口（新增 `lightbox.css`）

@@ -1,14 +1,10 @@
 import rss from '@astrojs/rss';
 import { getPublished, isReservedSlug } from '../lib/content';
+import { createWithBase } from '../utils/format';
 import { site } from '../../site.config.mjs';
 
 const base = import.meta.env.BASE_URL ?? '/';
-const baseNormalized = base.endsWith('/') ? base : `${base}/`;
-const withBase = (path) => {
-  if (!path || path === '/') return baseNormalized;
-  const clean = path.startsWith('/') ? path.slice(1) : path;
-  return `${baseNormalized}${clean}`;
-};
+const withBase = createWithBase(base);
 
 export async function GET(context) {
   const essays = await getPublished('essay', { includeDraft: false });

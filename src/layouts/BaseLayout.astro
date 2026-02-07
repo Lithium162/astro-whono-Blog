@@ -2,6 +2,7 @@
 import Sidebar from '../components/Sidebar.astro';
 import '../styles/global.css';
 import { site, hasSiteUrl } from '../../site.config.mjs';
+import { createWithBase } from '../utils/format';
 
 const {
   title,
@@ -25,12 +26,7 @@ const startYear = 2025;
 const currentYear = new Date().getFullYear();
 const yearRange = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
 const base = import.meta.env.BASE_URL ?? '/';
-const baseNormalized = base.endsWith('/') ? base : `${base}/`;
-const withBase = (path: string) => {
-  if (!path || path === '/') return baseNormalized;
-  const clean = path.startsWith('/') ? path.slice(1) : path;
-  return `${baseNormalized}${clean}`;
-};
+const withBase = createWithBase(base);
 ---
 
 <!doctype html>
