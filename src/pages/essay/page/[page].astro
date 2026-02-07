@@ -35,15 +35,45 @@ const pageTitle = `随笔 · 第 ${currentPage} 页`;
 ---
 
 <BaseLayout title={pageTitle} bodyClass="essay-page">
-  <div class="page-header page-header--essay">
-    <h1 class="page-title">随笔</h1>
-    <span class="page-subtitle">随笔与杂记，共 {visibleEssays.length} 篇 · 第 {currentPage} / {totalPages} 页 · <a href={withBase('/essay/rss.xml')}>RSS</a></span>
+  <div class="page-header page-header--essay page-header--with-search">
+    <div class="page-heading">
+      <h1 class="page-title">随笔</h1>
+      <span class="page-subtitle">随笔与杂记，共 {visibleEssays.length} 篇 · 第 {currentPage} / {totalPages} 页 · <a href={withBase('/essay/rss.xml')}>RSS</a></span>
+    </div>
+    <div class="page-actions">
+      <div class="entry-search" data-entry-search data-index-url={withBase('/essay/index.json')}>
+        <div class="entry-search-panel" data-entry-search-panel aria-hidden="true">
+          <input
+            data-entry-search-input
+            type="search"
+            placeholder="搜索：标题 / 摘要 / 标签"
+            autocomplete="off"
+            aria-label="搜索随笔"
+          />
+        </div>
+        <button
+          class="entry-search-toggle"
+          data-entry-search-toggle
+          type="button"
+          aria-label="搜索随笔"
+          title="搜索"
+          aria-expanded="false"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M16 16L20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
+  <div class="entry-status" data-entry-search-status role="status" aria-live="polite"></div>
 
   <div class="list">
     {pageEssays.map((e) => (
       <EssayCard
         href={withBase(`/archive/${getEssaySlug(e)}/`)}
+        slug={getEssaySlug(e)}
         title={e.data.title}
         excerpt={getListExcerpt(e)}
         date={e.data.date}
@@ -63,4 +93,8 @@ const pageTitle = `随笔 · 第 ${currentPage} 页`;
       </div>
     </nav>
   )}
+
+  <script>
+    import '../../../scripts/entry-search.ts';
+  </script>
 </BaseLayout>

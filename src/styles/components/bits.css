@@ -36,9 +36,8 @@
 }
 
 .bits-search:focus-within {
-  outline: 2px solid var(--muted);
-  outline-offset: 2px;
-  border-color: var(--muted);
+  outline: none;
+  border-color: var(--border);
 }
 
 .bits-search input {
@@ -1189,10 +1188,20 @@
   cursor: pointer;
 }
 
-.bits-draft-primary {
+.bits-draft-actions .bits-draft-primary {
   border-color: #000;
   background: #000;
   color: #fff;
+}
+
+:root[data-theme="dark"] .bits-draft-actions .bits-draft-primary {
+  background: #111;
+  border-color: #4b4b4b;
+  color: #fff;
+}
+
+:root[data-theme="dark"] .bits-draft-actions .bits-draft-primary:hover {
+  background: #1a1a1a;
 }
 
 .bits-draft-field input:focus-visible,

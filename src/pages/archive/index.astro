@@ -18,13 +18,47 @@ const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPag
 ---
 
 <BaseLayout title="归档">
-  <div class="page-header">
-    <h1 class="page-title">归档</h1>
-    <span class="page-subtitle">共 {archiveItems.length} 篇内容 · <a href={withBase('/archive/rss.xml')}>RSS</a></span>
+  <div class="page-header page-header--with-search">
+    <div class="page-heading">
+      <h1 class="page-title">归档</h1>
+      <span class="page-subtitle">共 {archiveItems.length} 篇内容 · <a href={withBase('/archive/rss.xml')}>RSS</a></span>
+    </div>
+    <div class="page-actions">
+      <div
+        class="entry-search"
+        data-entry-search
+        data-index-url={withBase('/archive/index.json')}
+        data-section-selector="[data-entry-section]"
+      >
+        <div class="entry-search-panel" data-entry-search-panel aria-hidden="true">
+          <input
+            data-entry-search-input
+            type="search"
+            placeholder="搜索：标题 / 摘要 / 标签"
+            autocomplete="off"
+            aria-label="搜索归档"
+          />
+        </div>
+        <button
+          class="entry-search-toggle"
+          data-entry-search-toggle
+          type="button"
+          aria-label="搜索归档"
+          title="搜索"
+          aria-expanded="false"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M16 16L20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
+  <div class="entry-status" data-entry-search-status role="status" aria-live="polite"></div>
 
   {groups.map((g) => (
-    <section>
+    <section data-entry-section>
       <h2 class="archive-year">{g.year}</h2>
       <div class="archive-list">
         {g.list.map((entry) => {
@@ -32,7 +66,7 @@ const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPag
           const href = withBase(`/archive/${slug}/`);
           const tag = entry.data.tags?.[0];
           return (
-          <div class="archive-row">
+          <div class="archive-row" data-entry-item data-slug={slug}>
             <div class="archive-title">
               <a href={href}>{entry.data.title}</a>
             </div>
@@ -64,4 +98,8 @@ const nextHref = currentPage < totalPages ? withBase(`/archive/page/${currentPag
       </div>
     </nav>
   )}
+
+  <script>
+    import '../../scripts/entry-search.ts';
+  </script>
 </BaseLayout>

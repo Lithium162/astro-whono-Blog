@@ -15,11 +15,14 @@ The format is based on Keep a Changelog, and this project aims to follow Semanti
 - 正文页（随笔/归档/小记）图片支持轻灯箱（禁用缩放/拖拽/下滑关闭）
 - bits 新增轻量图片预览 dialog 与 Markdown 语法演示
 - bits 支持作者覆盖（`author.name`/`author.avatar`）与草稿生成器作者输入
+- 新增 `/archive/index.json` 与 `/essay/index.json` 静态搜索索引端点（构建期生成，可缓存）
+- 新增 `src/scripts/entry-search.ts`，用于 archive/essay 懒加载索引搜索
 ### Changed
 - Markdown 渲染链路新增 `rehype-raw` + `rehype-sanitize`（含 allowlist），在保留 callout/gallery/code-block 等结构前提下补齐 XSS 防护
 - /bits 列表渲染改为按正文长度分流：清洗后 `<=180` 字保留原 Markdown 结构渲染，`>180` 字显示摘要文本
 - archive/essay 列表页与分页页复用 `src/lib/content.ts` 公共工具（`createWithBase`、`getPageSlice`、`getTotalPages`、`buildPaginatedPaths` 等）
 - base-aware 路径拼接工具统一为 `src/utils/format.ts` 的 `createWithBase`，清理 BaseLayout/Sidebar/BitCard/RSS/首页/归档详情/bits 脚本中的重复 `withBase` 实现；`src/lib/content.ts` 保留兼容转导出
+- `/archive/` 与 `/essay/`（含分页页）新增搜索框与搜索按钮，按索引匹配当前页条目并给出命中状态提示
 - 构建时强制内联样式表（`inlineStylesheets: 'always'`），减少首屏阻塞
 - `SITE_URL` 缺失时不输出 canonical/og:url，并补充生产警告与部署说明
 - bits 灯箱复用通用控制器并统一样式入口（新增 `lightbox.css`）
