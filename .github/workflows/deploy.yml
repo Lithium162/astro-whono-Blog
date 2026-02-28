@@ -1,11 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  # 每次 push 到 main 分支时触发（改成你的分支名，如 master）
   push:
-    branches: [ main ]
-  # 允许手动从 Actions 面板触发
-  workflow_dispatch:
+    branches: [main]
+  workflow_dispatch:  # 允许手动触发
 
 permissions:
   contents: read
@@ -20,21 +18,48 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 可选：如果有 lastUpdated 等需要完整 git history
 
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2  # 或最新版 v2+，官方会自动更新
-        # with:  # 可选参数，按需加
-        #   path: . # 项目根目录，默认 .
-        #   node-version: 20 # 或你的 node 版本
-        #   package-manager: pnpm@latest # 如果用 pnpm/yarn/npm
+      - name: Resolve Node version
+        id: node
+        shell: bash
+        run: |
+          if [ -f .nvmrc ]; then
+            version="$(cat .nvmrc)"
+          else
+            version="$(grep -E '"node"\s*:' package.json | head -n 1 | sed -E 's/.*"node"\s*:\s*"([^"]+)".*/\1/')"
+          fi
+          if [ -z "$version" ]; then
+            version="20"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.node.outputs.version }}
+          cache: 'npm'  # 或 pnpm/yarn，根据你的项目
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro
+        run: npm run build  # 你的 build 脚本，通常是 astro build
+
+      - name: Install, build, and upload your site  # 官方 action 内置 build，但这里我们已手动 build，可选覆盖
+        uses: withastro/action@v2  # 或 @v5 如果文档指定最新版；@v2 稳定兼容
+        # with:  # 可选参数
+        #   path: .         # 默认当前目录
+        #   node-version: ${{ steps.node.outputs.version }}
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: Github-pages for Astro Blog
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
