@@ -1,5 +1,5 @@
 ---
-title: 动漫清单
+title: Anime-list
 description: ""
 date: 2026-03-01
 badge: 指南
