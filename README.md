@@ -135,7 +135,7 @@ npm run build && npm run preview
 
 ### 核心字段（Frontmatter）
 
-随笔：
+随笔（essays）：
 ```yaml
 title: My Post
 date: 2026-01-01
