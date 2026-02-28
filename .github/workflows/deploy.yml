@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 每次 push 到 main 分支时触发（改成你的分支名，如 master）
+  push:
+    branches: [ main ]
+  # 允许手动从 Actions 面板触发
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+
+      - name: Install, build, and upload your site
+        uses: withastro/action@v2  # 或最新版 v2+，官方会自动更新
+        # with:  # 可选参数，按需加
+        #   path: . # 项目根目录，默认 .
+        #   node-version: 20 # 或你的 node 版本
+        #   package-manager: pnpm@latest # 如果用 pnpm/yarn/npm
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
