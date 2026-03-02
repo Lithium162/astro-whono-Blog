@@ -1,7 +1,7 @@
 ---
 title: 动漫清单
 description: "收录了许多动漫"
-date: 2026-03-01
+date: 2026-03-02
 badge: 指南
 tags: ["清单"] #为什么只显示一个tag？
 draft: false
