@@ -223,22 +223,24 @@ npm run build
 **案例 A：img + figcaption**
 
 <figure class="figure">
-  <img src="/images/archive/demo-archive-01.webp" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/images/archive/Ganyu.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">图注示例：这是图片的说明文字。</figcaption>
 </figure>
+
+![图注](./Ganyu.jpg)
 
 **案例 B：无 figcaption**
 
 <figure class="figure">
-  <img src="/images/archive/demo-archive-02.webp" alt="无图注示例" />
+  <img src="/astro-whono-Blog/images/archive/demo-archive-02.webp" alt="无图注示例" />
 </figure>
 
 **案例 C：picture + figcaption（可选）**
 
 <figure class="figure">
   <picture>
-    <source srcset="/images/archive/demo-archive-03.webp" type="image/webp" />
-    <img src="/images/archive/demo-archive-02.webp" alt="图注示例图片 2" />
+    <source srcset="/astro-whono-Blog/images/archive/demo-archive-03.webp" type="image/webp" />
+    <img src="/astro-whono-Blog/images/archive/demo-archive-02.webp" alt="图注示例图片 2" />
   </picture>
   <figcaption class="figure-caption">图注示例：picture 的说明文字。</figcaption>
 </figure>
@@ -252,13 +254,13 @@ npm run build
 <ul class="gallery">
   <li>
     <figure>
-      <img src="/images/archive/demo-archive-01.webp" alt="画廊示例 1" />
+      <img src="/astro-whono-Blog/images/archive/demo-archive-01.webp" alt="画廊示例 1" />
       <figcaption>第一张图注（可选）</figcaption>
     </figure>
   </li>
   <li>
     <figure>
-      <img src="/images/archive/demo-archive-02.webp" alt="画廊示例 2" />
+      <img src="/astro-whono-Blog/images/archive/demo-archive-02.webp" alt="画廊示例 2" />
       <figcaption>第二张图注（可选）</figcaption>
     </figure>
   </li>

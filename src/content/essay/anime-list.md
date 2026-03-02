@@ -3,22 +3,40 @@ title: 动漫清单
 description: "收录了许多动漫"
 date: 2026-03-01
 badge: 指南
-tags: ["指南"] #为什么只显示一个tag？
+tags: ["清单"] #为什么只显示一个tag？
 draft: false
 ---
-## 这里收集了219部最值得看的动漫（截至2024年之前）
-高达-
+# 这里收集了219部最值得看的动漫（截至2025年之前）
+## 按照首字母排序，清单来源网络，经过作者二次加工
+
+--------------------------------------------
+
+
 AIR - 2005 
 
-Angel Beats! - 2010 √
+## Angel Beats! - 2010 ✅
+麻准枝神了，说实话，我没看过几部催泪番（但这部也算是搞笑日常番）挺具有启蒙意义的
+整体节奏很紧凑，角色的塑造有时在一集内就完成了，个人认为12集还是有点短了，要是能延长估计会更好。（其实就是你不够看吧）
+<cite>2026年的寒假<cite>
 
-BanG Dream! It's MyGO!!!!! - 2023 √
+## BanG Dream! It's MyGO!!!!! - 2023 ✅
+2024年的Mujica出圈吸引了我，先看的这部MyGO质量感觉很不错，刚开始看的时候能被弹幕笑死，主要是续作爆了导致解构主义的大手伸到了这部作品。很好的乐队番,至于Mujica，我想一定蒸蒸日上吧
+## Mujica -2025 ✅
+这部本来是没在这部原来的清单的，我自己加的。你可以说Mujica不是一部好作品，但是你不能说它难看。无需多言。
+哎😔！！！
+
+
+<figure class="figure">
+  <img src="/astro-whono-Blog/images/Saki.jpg" alt="无图注示例" />
+</figure>
+
+<!-- ![图注](./Saki.jpg) -->
 
 CLANNAD - 2007
 
 Do It Yourself - 2022
 
-Fate/Zero - 2011 √
+Fate/Zero - 2011 ✅
 
 FLCL - 2000
 
@@ -80,11 +98,11 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 此时此刻的我 (The Girl Who Leapt Through Time) - 2006
 
-从零开始的异世界生活 (Re：Zero) - 2016 √
+从零开始的异世界生活 (Re：Zero) - 2016 ✅
 
 大都会 (Metropolis) - 2001
 
-吊带袜天使 (Panty & Stocking with Garterbelt) - 2010 √
+吊带袜天使 (Panty & Stocking with Garterbelt) - 2010 ✅
 
 调酒师 (Bartender) - 2006
 
@@ -108,6 +126,8 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 钢之炼金术师 (Fullmetal Alchemist) - 2003
 
+高达 - 1979
+
 高达创形者 再起 (Gundam Build Divers Re：Rise) - 2019
 
 高分少女 (Hi Score Girl) - 2018
@@ -120,13 +140,13 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 攻壳机动队95/无罪 (Ghost in the Shell / Innocence) - 1995/2004
 
-孤独摇滚 (Bocchi the Rock!) - 2022 √
+孤独摇滚 (Bocchi the Rock!) - 2022 ✅
 
 怪化猫 (Mononoke) - 2007
 
 怪人的沙拉碗 (The Salad Bowl of Strange) - 2024
 
-怪医黑杰克 (Black Jack) - 1993 (OVA)/2004 (TV) √
+怪医黑杰克 (Black Jack) - 1993 (OVA)/2004 (TV) ✅
 
 哈尔的移动城堡 (Howl's Moving Castle) - 2004
 
@@ -150,7 +170,7 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 幻影死神 (Phantom: Requiem for the Phantom) - 2009
 
-皇家国教骑士团 (Hellsing Ultimate) - 2006 √
+皇家国教骑士团 (Hellsing Ultimate) - 2006 ✅
 
 灰与幻想的格林姆迦尔 (Grimgar of Fantasy and Ash) - 2016
 
@@ -196,7 +216,7 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 金银岛 (Treasure Island) - 1978
 
-进击的巨人 (Attack on Titan) - 2013 √
+进击的巨人 (Attack on Titan) - 2013 ✅
 
 精灵宝可梦 (Pokémon) - 1997
 
@@ -252,9 +272,9 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 魔卡少女樱 (Cardcaptor Sakura) - 1998
 
-魔女之旅 (Wandering Witch: The Journey of Elaina) - 2020 √
+魔女之旅 (Wandering Witch: The Journey of Elaina) - 2020 ✅
 
-某科学的超电磁炮 (A Certain Scientific Railgun) - 2009 √
+某科学的超电磁炮 (A Certain Scientific Railgun) - 2009 ✅
 
 男子高中生的日常 (Daily Lives of High School Boys) - 2012
 
@@ -268,7 +288,7 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 漂流少年 (Drifting Dragons) - 2020
 
-乒乓 (Ping Pong the Animation) - 2014 √
+乒乓 (Ping Pong the Animation) - 2014 ✅
 
 平家物语 (Heike Monogatari) - 2021
 
@@ -296,9 +316,9 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 日常 (Nichijou) - 2011
 
-赛博朋克2077边缘行者 (Cyberpunk: Edgerunners) - 2022 √
+赛博朋克2077边缘行者 (Cyberpunk: Edgerunners) - 2022 ✅
 
-赛马娘 (Uma Musume) - 2018 √
+赛马娘 (Uma Musume) - 2018 ✅
 
 三月的狮子 (March comes in like a lion) - 2016
 
@@ -326,7 +346,7 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 死神 (Bleach) - 2004
 
-死亡笔记 (Death Note) - 2006 √
+死亡笔记 (Death Note) - 2006 ✅
 
 死亡代理人 (Ergo Proxy) - 2006
 
@@ -422,7 +442,7 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 再见绝望先生 (Sayonara, Zetsubou-Sensei) - 2007
 
-葬送的芙利莲 (Frieren: Beyond Journey's End) - 2023 √
+葬送的芙利莲 (Frieren: Beyond Journey's End) - 2023 ✅
 
 斩服少女 (Kill la Kill) - 2013
 
@@ -434,6 +454,6 @@ SSSS.电光机王 (SSSS.Gridman) - 2018
 
 重启咲良田 (Charlotte) - 2015
 
-紫罗兰永恒花园 (Violet Evergarden) - 2018 √
+紫罗兰永恒花园 (Violet Evergarden) - 2018 ✅
 
 佐贺偶像是传奇 (Zombie Land Saga) - 2018
