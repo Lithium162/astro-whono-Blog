@@ -11,7 +11,7 @@ draft: false
 ### 3.7日
 正式装好服务器主机并安装Ubuntu系统
 <figure class="figure">
-  <img src="/astro-whono-Blog/public\images\A_part\P20260307-201756.jpg" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/public/images/A_part/P20260307-201756.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">这是室友的桌子和显示屏（NTR）</figcaption>
 </figure>
 
@@ -26,7 +26,7 @@ draft: false
 
 全高画质窗口化30帧率
 <figure class="figure">
-  <img src="/astro-whono-Blog/public\images\A_part\6c3ee8160a40b38730fb905d4770675c.jpg" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/public/images/A_part/6c3ee8160a40b38730fb905d4770675c.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">笑点解析“Use your mouse to turn”</figcaption>
 </figure>
 
@@ -47,7 +47,7 @@ draft: false
 当两股记忆交汇，原来发现我想要找的它等了我六年。
 
 <figure class="figure">
-  <img src="/astro-whono-Blog/public\images\A_part\立华奏.jpg" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/public/images/A_part/立华奏.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption"></figcaption>
 </figure>
 
