@@ -16,8 +16,10 @@ export async function getStaticPaths() {
   });
 }
 
+const encodedSlug = encodeURIComponent(Astro.params.slug);
+
 return Astro.redirect(
-  `${(import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/')}archive/${Astro.params.slug}/`,
+  `${(import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/')}archive/${encodedSlug}/`,
   301
 );
 ---
