@@ -10,6 +10,7 @@
 
 - 在线演示：<https://astro.whono.me>
 - 仓库地址：<https://github.com/cxro/astro-whono>
+- 网址Github发布：<https://lithium162.github.io/astro-whono-Blog/>
 
 
 ## 预览
