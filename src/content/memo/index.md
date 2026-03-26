@@ -11,7 +11,7 @@ draft: false
 ### 3.7日
 正式装好服务器主机并安装Ubuntu系统
 <figure class="figure">
-  <img src="/astro-whono-Blog/public/images/A_part/P20260307-201756.jpg" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/images/A_part/P20260307-201756.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">这是室友的桌子和显示屏（NTR）</figcaption>
 </figure>
 
@@ -26,7 +26,7 @@ draft: false
 
 全高画质窗口化30帧率
 <figure class="figure">
-  <img src="/astro-whono-Blog/public/images/A_part/6c3ee8160a40b38730fb905d4770675c.jpg" alt="图注示例图片 1" />
+  <img src="/astro-whono-Blog/images/A_part/6c3ee8160a40b38730fb905d4770675c.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption">笑点解析“Use your mouse to turn”</figcaption>
 </figure>
 
@@ -46,10 +46,16 @@ draft: false
 
 当两股记忆交汇，原来发现我想要找的它等了我六年。
 
-<figure class="figure">
+<!-- <figure class="figure">
   <img src="/astro-whono-Blog/public/images/A_part/立华奏.jpg" alt="图注示例图片 1" />
   <figcaption class="figure-caption"></figcaption>
+</figure> -->
+
+<figure class="figure">
+  <img src="/astro-whono-Blog/images/A_part/立华奏.jpg" alt="图注示例图片 1" />
+  <figcaption class="figure-caption"></figcaption>
 </figure>
+
 
 ### 3.10日
 下午网卡到了立马安装，怎么没有WIFI选项？也罢需要手动加驱动正常？怎么不能从系统下？网络找找吧，怎么没有Ubuntu相关的驱动？找商家问问吧，什么叫不提供Ubuntu技术支持？好在得知了型号是MT7902去外网找找吧，什么叫很遗憾它没有得到支持？什么叫我们一起签署请愿书？到开源社区找找吧？好在是有实验性方案？什么叫项目已终止？联发科已提交补丁至Linux官方？幸好只需要等一个月，还是去试试实验性方案吧。打开终端，运行代码，安装依赖报错报错报错。最后终于成功，重启电脑出现WIFI选项 OHHHHHHHH！！！
@@ -67,7 +73,6 @@ draft: false
 ### 3.12~3.13日
 休息，干了其它事
 
-
 ### 3.16日
 放弃Cloudflare Tunnel内网穿透方案，原因：带宽不足
 
@@ -79,3 +84,47 @@ draft: false
 成功运行先前的齿轮盛宴整合包服务端
 
 但是地图存档不见了
+
+### 3.18日
+成功用内网穿透实现外部访问网站；实现SSH远程连接失败，公网IP可以ping成功，但SSH总是提示进不去。
+似乎VScode可以用SSH远程连接，明天再说。
+
+有人问我为什么每天只干这么点事（其实没人问）因为我只有晚上的几个小时是足够空闲且连续的。
+
+连上SSH后的下一步：熟悉无图形化、远程命令行操作。
+
+### 3.19日晚饭前
+我怀着激动的心情写下这些文字：
+
+在添加了-p远程连接端口后，我实现了远程SSH连接，并且顺便配置好了我的VScode相关功能，没错，这是在本地VSCode编辑的，却是在远程（逻辑意义上的远程）发布的，它即有一定的图形化界面，同时也有命令行般的便捷；这可能只是计算机技术中的一小步，却是我的一大步，标志着我已经基本步入计算机相关的门槛，尽管许多操作都是由AI辅助，我可能只知其然，不知其所以然，但是，这依然令我兴奋；今后我也会由表及里的学习更多知识和技能。
+
+### 3.21日晚
+1、现状：可以在个人PC的VScode上实现基本无图形化(其实还是有不少图形的)操作了
+
+2、经过两天的努力，实现了MC服务器的自动化启动配置包括：
+
+无人状态下自动关服：利用 curseforge上的No Player Shutdown mod实现
+
+自动唤醒服务器：利用Github上的SleepingServerStarter项目，基于Node.js，实时监听25565端口，检测到有人Ping后启用服务器脚本。
+
+服务开机启动：基本systemctl功能。
+
+3、下一步：重新配置服务器开关机功能，实现在不同日期、不同时间开关机。
+
+### 3.22日晚
+1、基本配置好了服务器的自动休眠和开机功能。
+
+### 3.24日晚
+1、出现了新问题，长时间运行后，出现了无法正常开机的情况，机器是运行的，但是服务都没启动，接上显示屏后亮但是黑屏，进Bios后重新进就恢复正常了。
+
+2、着手新项目，AI和专业课知识。
+
+### 3.25日晚（第二天补的）
+将专业课程相关的UnityShader相关的学习计划提上日程
+
+利用现有的AI工具结合手头的PDF资料去学习，详见<a href="http://43.248.187.86:19810/astro-whono-Blog/archive/ai%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D%E7%B1%BB%E8%B5%84%E6%96%99/" target="_blank" rel="noopener noreferrer">这里</a>
+
+
+
+
+
