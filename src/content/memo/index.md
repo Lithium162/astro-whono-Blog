@@ -125,6 +125,11 @@ draft: false
 利用现有的AI工具结合手头的PDF资料去学习，详见<a href="http://43.248.187.86:19810/astro-whono-Blog/archive/ai%E8%BE%85%E5%8A%A9%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D%E7%B1%BB%E8%B5%84%E6%96%99/" target="_blank" rel="noopener noreferrer">这里</a>
 
 
+### 3.26
+安装Marker（一个PDF转Markdown的Python项目）又到了我最最最爱的Python了，折腾虚拟环境后老忘记激活，为什么python配置下的终端默认是ps？
+又是装Pytorch，想起半年之前搞AI转换音频那个TTS模型时候的无力感了，一天到晚在报错，一下下几个G的包，又要设代理，我最近才琢磨透，当时不会，定着延迟下一个小时，下完运行报错，一看版本不兼容，换了版本，又发现python版本不兼容......
 
+得，又炸缸了，下之前不注意显卡版本，下了个CUDA121的，又得重新下。
 
-
+### 3.27
+开始学习UnityShader相关内容。详见<a href="http://43.248.187.86:19810/astro-whono-Blog/archive/unityshader%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener noreferrer">这里</a>
